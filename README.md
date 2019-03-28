@@ -25,32 +25,55 @@ example: http://34.65.181.39/currentweather?latitude=59&longitude=10
 
 # Deploying on GCP:
 1. set your project id and zone:
+```
 gcloud config set project ${PROJECT_ID} // my project id is layegh-195606
+```
+```
 gcloud config set compute/zone  europe-west6-c
+```
 2. build our docker image:
+```
  docker build -t gcr.io/${PROJECT_ID}/weather-app:v1 .
+ ```
 3. Push our docker image:
+```
 docker push gcr.io/${PROJECT_ID}/weather-app:v1
+```
 4. creating a 3node container cluster (cassandra):
+```
 gcloud container clusters create cassandra --num-nodes=3--machine-type "n1-standard-2"
-5. deploy our application
+```
+5. deploy our application 
+```
 kubectl run weather-app --image=gcr.io/${PROJECT_ID}/pokemon-app:v1
 --port 8080
+```
 6. to expose the deployment to get an External IP adress we need to create a service:
+```
 kubectl expose deployment weather-app --type=LoadBalancer --port 80
 --target-port 8080
+```
 7. see the pods created:
+```
 kubectl get pods
+```
 8. get the external IP address that is assigned to our deployment :
+```
 kubectl get services
-
-	example: my ip address was: http://34.65.181.39/
+```
+```
+example: my ip address was: http://34.65.181.39/
+```
 
 to see the status of our deployment we can check this command:
-	kubectl get deployment cassandra
+```
+kubectl get deployment cassandra
+```
 If all is fine, it could be that the firewall ruleset does not allow external
 HTTP requests to our load-balancer. Check the firewall ruleset by issuing:
-	gcloud compute firewall-rules list
+```
+gcloud compute firewall-rules list
+```
 Look for a line that allows INGRESS for "DIRECTION" and for "ALLOW" it
 should be tcp:80 and for "DISABLED" should be False.
 
