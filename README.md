@@ -12,13 +12,16 @@ The assumption is you have a Cassandra cluster setup already, with a keyspace ca
 https://developers.breezometer.com/
 
 create a file called ‘config.py’ in the root folder and edit the file like follow:
+```
 DEBUG=True
+```
 2.Create a folder called ‘instance’ 
 1. create a file called ‘config.py’ 
 2. edit the file like below:
+```
 DEBUG=True
 MY_API_KEY=”your API key”
-
+```
 # RESTfull app:
 This application provides the current weather data of each city via a REST API. http://{Hostname}/currnetweather?latitude=&longitude=
 example: http://34.65.181.39/currentweather?latitude=59&longitude=10
