@@ -1,4 +1,4 @@
-# RESTfull_app
+# RESTfull-app
 
 # Current weather REST Application
 this Flask Application enable you to get the weather of cities around the world and fetch  their information such as population,latitude and longitude.
